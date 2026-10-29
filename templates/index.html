@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1f40">
+    <meta name="description" content="Juan DevNews: acompanhe notícias do Brasil, do mundo, tecnologia, ciência e muito mais.">
+    <title>Juan DevNews | Informação em tempo real</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="barra-superior">
+        <div class="container barra-superior-conteudo">
+            <span>INFORMAÇÃO COM RESPONSABILIDADE</span>
+
+            <span class="indicador-online">
+                <span class="ponto-online"></span>
+                Notícias atualizadas
+            </span>
+        </div>
+    </div>
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <a
+                href="/"
+                class="marca"
+                aria-label="Juan DevNews - Página inicial"
+            >
+                <h1>Juan<span>DevNews</span></h1>
+                <p>Informação para entender o mundo.</p>
+            </a>
+            <div class="assinatura-visual">
+                <span class="assinatura-ponto"></span>
+                Jornalismo, tecnologia e atualidade.
+            </div>
+        </div>
+    </header>
+    <nav class="menu" aria-label="Categorias de notícias">
+        <div class="container menu-conteudo">
+            <button
+                type="button"
+                class="categoria ativa"
+                data-categoria="general"
+            >
+                Últimas notícias
+            </button>
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="world"
+            >
+                Mundo
+            </button>
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="nation"
+            >
+                Brasil
+            </button>
+
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="business"
+            >
+                Economia
+            </button>
+
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="technology"
+            >
+                Tecnologia
+            </button>
+
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="sports"
+            >
+                Esportes
+            </button>
+
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="science"
+            >
+                Ciência
+            </button>
+
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="health"
+            >
+                Saúde
+            </button>
+
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="entertainment"
+            >
+                Entretenimento
+            </button>
+
+            <button
+                type="button"
+                class="categoria"
+                data-categoria="vaticano"
+            >
+                Vaticano
+            </button>
+
+        </div>
+    </nav>
+    <main class="container principal">
+        <section
+            id="cabecalho-vaticano"
+            class="cabecalho-vaticano"
+            hidden
+        >
+            <div class="vaticano-identidade">
+
+                <span class="vaticano-cruz" aria-hidden="true">
+                    ✝
+                </span>
+
+                <div>
+                    <span class="vaticano-sobretitulo">
+                        FÉ · IGREJA · ATUALIDADE
+                    </span>
+
+                    <h2>Igreja Católica</h2>
+
+                    <p>
+                        As notícias da Santa Sé e da Igreja no mundo.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="vaticano-divisor"></div>
+
+            <p class="vaticano-descricao">
+                Acompanhe os pronunciamentos do Papa, as atividades
+                do Vaticano e os acontecimentos que marcam a vida
+                da Igreja Católica.
+            </p>
+        </section>
+        <section
+            id="noticia-destaque"
+            class="noticia-principal"
+            aria-labelledby="destaque-titulo"
+            hidden
+        >
+
+            <div
+                id="destaque-imagem"
+                class="noticia-principal-imagem"
+            ></div>
+
+            <div class="noticia-principal-conteudo">
+
+                <span class="noticia-principal-etiqueta">
+                    PRINCIPAL NOTÍCIA
+                </span>
+
+                <div
+                    id="destaque-metadados"
+                    class="metadados-noticia"
+                ></div>
+
+                <h2 id="destaque-titulo"></h2>
+
+                <p id="destaque-descricao"></p>
+
+                <a
+                    id="destaque-link"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Ler matéria completa →
+                </a>
+
+            </div>
+        </section>
+        <section
+            class="secao-noticias"
+            id="secao-noticias"
+            aria-labelledby="titulo-noticias"
+        >
+
+            <div class="titulo-secao">
+
+                <div class="titulo-secao-principal">
+                    <span class="marcador-titulo"></span>
+
+                    <div>
+                        <span class="subtitulo-secao">
+                            FIQUE INFORMADO
+                        </span>
+
+                        <h2 id="titulo-noticias">
+                            Últimas notícias
+                        </h2>
+                    </div>
+                </div>
+
+                <span id="status" aria-live="polite">
+                    Preparando notícias...
+                </span>
+
+            </div>
+            <div class="controles-carrossel">
+
+                <button
+                    type="button"
+                    id="noticias-anterior"
+                    aria-label="Ver notícias anteriores"
+                    disabled
+                >
+                    &#8592;
+                </button>
+
+                <button
+                    type="button"
+                    id="noticias-proxima"
+                    aria-label="Ver próximas notícias"
+                    disabled
+                >
+                    &#8594;
+                </button>
+
+            </div>
+            <div
+                id="lista-noticias"
+                class="grade-noticias"
+                aria-live="polite"
+            >
+                <p class="mensagem">
+                    Preparando as últimas notícias...
+                </p>
+            </div>
+
+        </section>
+
+        
+        <section class="chamada-final">
+
+            <div>
+                <span class="etiqueta-final">
+                    JUAN DEVNEWS
+                </span>
+
+                <h2>
+                    Informação que aproxima você ao mundo.
+                </h2>
+
+                <p>
+                    Acompanhe os assuntos que fazem a diferença.
+                </p>
+            </div>
+
+            <a
+                href="#"
+                class="voltar-topo"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+            >
+                Voltar ao topo ↑
+            </a>
+
+        </section>
+
+    </main>
+
+    
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+
+            <a href="/" class="marca-rodape">
+                Juan<span>DevNews</span>
+            </a>
+
+            <p>
+                Informação com responsabilidade.
+
+                <span>
+                    © <span id="ano-atual"></span> Juan DevNews
+                </span>
+            </p>
+
+            <a href="#secao-noticias" class="link-rodape">
+                Últimas notícias ↑
+            </a>
+
+        </div>
+    </footer>
+
+    
+    <script>
+        document.getElementById("ano-atual").textContent =
+            new Date().getFullYear();
+    </script>
+
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
